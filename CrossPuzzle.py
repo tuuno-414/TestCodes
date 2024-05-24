@@ -22,7 +22,7 @@ def make_table(input_data):
                 Table_Row = int(input_data[count]) + 2
 
             # count == 0 上外周を作成する
-            # count == 6 下外周を作成する
+            # count == Table_Row - 1 下外周を作成する
             for count in range(TABLE_COLMN):
                 table_row.append(OUTER_OBJ)
         else:
@@ -74,11 +74,6 @@ def delete_cross_match(table):
                             table_update_flag = True
                         if not replace_flag:
                             break
-                    if replace_flag:
-                        break
-                for i in range(Table_Row):
-                    print(table[i])
-                print()
         if not table_update_flag:
             break
 
@@ -158,8 +153,17 @@ def create_result(table):
             print()
     return
 
+def input_data():
+    input_line = []
+    input_row = input()
+    input_line.append(input_row)
+    for count in range(int(input_row)):
+        input_text = input()
+        input_line.append(input_text)
+    return input_line
+
 def main():
-    input_line = input().split('\\n')
+    input_line = input_data()
     puzzule_table = make_table(input_line)
     puzzule_table = delete_cross_match(puzzule_table)
     create_result(puzzule_table)
